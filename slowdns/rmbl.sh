@@ -1,9 +1,9 @@
 #!/bin/bash
 apt install jq curl -y
-DOMAIN=rhyuunet.my.id
+DOMAIN=rajavpn.us.kg
 sub=$(cat /root/subdomainx)
-dns=${sub}.rhyuunet.my.id
-dns2=*.${sub}.rhyuunet.my.id
+dns=${sub}.rajavpn.us.kg
+dns2=*.${sub}.rajavpn.us.kg
 CF_ID=dm.napoli10@gmail.com
 CF_KEY=213f142bc6f2e4a8f9060566a97a7bce2518d
 set -euo pipefail
@@ -43,10 +43,10 @@ echo $dns > /root/domain
 echo "$dns" > /etc/xray/domain
 echo "$dn!������MYIP=$(wget -qO- icanhazip.com);
 apt install jq curl -y
-DOMAIN=rhyuunet.my.id
+DOMAIN=rajavpn.us.kg
 sub=$(cat /root/subdomainx)
-dns=${sub}.rhyuunet.my.id
-dns2=*.${sub}.rhyuunet.my.id
+dns=${sub}.rajavpn.us.kg
+dns2=*.${sub}.rajavpn.us.kg
 CF_ID=dm.napoli10@gmail.com
 CF_KEY=213f142bc6f2e4a8f9060566a97a7bce2518d
 set -euo pipefail
