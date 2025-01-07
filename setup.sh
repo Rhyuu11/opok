@@ -684,11 +684,6 @@ wget https://raw.githubusercontent.com/Rhyuu11/opok/main/menu/update.sh && chmod
 clear
 }
 
-res8() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/slowdns/installsl.sh && chmod +x installsl.sh && bash installsl.sh
-clear
-}
-
 res9() {
 wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/install/udp-custom.sh && chmod +x udp-custom.sh && bash udp-custom.sh
 clear
@@ -743,11 +738,6 @@ echo -e "${BIBlue}╭═══════════════════�
 echo -e "${BIBlue}│ ${BGCOLOR}          DOWNLOAD EXTRA MENU           ${NC}${BIBlue} │${NC}"
 echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
 fun_bar 'res7'
-
-echo -e "${BIBlue}╭══════════════════════════════════════════╮${NC}"
-echo -e "${BIBlue}│ ${BGCOLOR}           DOWNLOAD SLOW DNS            ${NC}${BIBlue} │${NC}"
-echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
-fun_bar 'res8'
 
 echo -e "${BIBlue}╭══════════════════════════════════════════╮${NC}"
 echo -e "${BIBlue}│ ${BGCOLOR}          DOWNLOAD UDP COSTUM           ${NC}${BIBlue} │${NC}"
