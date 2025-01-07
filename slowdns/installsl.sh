@@ -1,9 +1,9 @@
 #!/bin/sh
 ns_domain_cloudflare() {
- DOMAIN="rhyuunet.my.id"
+ DOMAIN="rajavpn.us.kg"
  DOMAIN_PATH=$(cat /etc/xray/domain)
  SUB=$(tr </dev/urandom -dc a-z0-9 | head -c7)
- SUB_DOMAIN=${SUB}".rhyuunet.my.id"
+ SUB_DOMAIN=${SUB}".rajavpn.us.kg"
  NS_DOMAIN=ns.${SUB_DOMAIN}
  CF_ID=dm.napoli10@gmail.com
  CF_KEY=213f142bc6f2e4a8f9060566a97a7bce2518d
