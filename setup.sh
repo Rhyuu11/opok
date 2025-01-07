@@ -616,7 +616,7 @@ cd
 sysctl -w net.ipv6.conf.all.disable_ipv6=1 >/dev/null 2>&1
 sysctl -w net.ipv6.conf.default.disable_ipv6=1 >/dev/null 2>&1
 clear
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/tools.sh &> /dev/null
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/tools.sh &> /dev/null
 chmod +x tools.sh 
 bash tools.sh
 clear
@@ -655,7 +655,7 @@ fun_bar() {
 
 
 res2() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/install/ssh-vpn.sh && chmod +x ssh-vpn.sh && ./ssh-vpn.sh
 clear
 } 
 
@@ -665,17 +665,17 @@ clear
 }
 
 res4() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/sshws/insshws.sh && chmod +x insshws.sh && ./insshws.sh
 clear
 }
 
 res5() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/install/set-br.sh && chmod +x set-br.sh && ./set-br.sh
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/install/set-br.sh && chmod +x set-br.sh && ./set-br.sh
 clear
 }
 
 res6() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/sshws/ohp.sh && chmod +x ohp.sh && ./ohp.sh
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/sshws/ohp.sh && chmod +x ohp.sh && ./ohp.sh
 clear
 }
 
@@ -684,12 +684,18 @@ wget https://raw.githubusercontent.com/Rhyuu11/opok/main/menu/update.sh && chmod
 clear
 }
 
-res9() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/install/udp-custom.sh && chmod +x udp-custom.sh && bash udp-custom.sh
+res8() {
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/slowdns/installsl.sh && chmod +x installsl.sh && bash installsl.sh
 clear
 }
+
+res9() {
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/install/udp-custom.sh && chmod +x udp-custom.sh && bash udp-custom.sh
+clear
+}
+
 res10() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/noobz/noobzvpns.zip
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/noobz/noobzvpns.zip
 unzip noobzvpns.zip
 chmod +x noobzvpns/*
 cd noobzvpns
@@ -700,12 +706,12 @@ clear
 }
 
 res11() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/bin/limit.sh && chmod +x limit.sh && ./limit.sh
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/bin/limit.sh && chmod +x limit.sh && ./limit.sh
 clear
 }
 
 res12() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/install/ins-trgo.sh && chmod +x ins-trgo.sh && ./ins-trgo.sh
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/install/ins-trgo.sh && chmod +x ins-trgo.sh && ./ins-trgo.sh
 clear
 }
 
@@ -738,6 +744,11 @@ echo -e "${BIBlue}╭═══════════════════�
 echo -e "${BIBlue}│ ${BGCOLOR}          DOWNLOAD EXTRA MENU           ${NC}${BIBlue} │${NC}"
 echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
 fun_bar 'res7'
+
+echo -e "${BIBlue}╭══════════════════════════════════════════╮${NC}"
+echo -e "${BIBlue}│ ${BGCOLOR}           DOWNLOAD SLOW DNS            ${NC}${BIBlue} │${NC}"
+echo -e "${BIBlue}╰══════════════════════════════════════════╯${NC}"
+fun_bar 'res8'
 
 echo -e "${BIBlue}╭══════════════════════════════════════════╮${NC}"
 echo -e "${BIBlue}│ ${BGCOLOR}          DOWNLOAD UDP COSTUM           ${NC}${BIBlue} │${NC}"
@@ -819,7 +830,7 @@ if [ ! -f "/etc/log-create-user.log" ]; then
 echo "Log All Account " > /etc/log-create-user.log
 fi
 history -c
-serverV=$( curl -sS https://raw.githubusercontent.com/Rhyuu11/newsc/main/versi  )
+serverV=$( curl -sS https://raw.githubusercontent.com/Rhyuu11/opok/main/versi  )
 echo $serverV > /opt/.ver
 aureb=$(cat /home/re_otm)
 b=11
