@@ -303,7 +303,7 @@ fun_bar() {
     tput cnorm
 }
 res1() {
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/install/rmbl.sh && chmod +x rmbl.sh && ./rmbl.sh
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/install/rmbl.sh && chmod +x rmbl.sh && ./rmbl.sh
 clear
 }
 res2() {
