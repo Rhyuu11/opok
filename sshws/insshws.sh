@@ -2,7 +2,7 @@
 # Proxy For Edukasi & Imclass
 
 # Link Hosting Kalian
-Rhyuu="https://raw.githubusercontent.com/Rhyuu11/opok/main/install"
+SFVPN="https://satantech.serv00.net/arthepat/install"
 
 wget -O /usr/local/bin/ws-dropbear https://raw.githubusercontent.com/Rhyuu11/opok/main/sshws/ws-dropbear
 chmod +x /usr/local/bin/ws-dropbear
@@ -65,7 +65,7 @@ chmod +x /usr/local/bin/ws-stunnel
 # Installing Service
 cat > /etc/systemd/system/ws-stunnel.service << END
 [Unit]
-Description=Python Proxy Mod By Rhyuu
+Description=Python Proxy Mod By SFVPN
 Documentation=https://t.me/abecasdee13
 After=network.target nss-lookup.target
 
