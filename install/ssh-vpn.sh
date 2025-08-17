@@ -75,19 +75,25 @@ apt dist-upgrade -y
 apt-get remove --purge ufw firewalld -y
 apt-get remove --purge exim4 -y
 
+#install jq
+apt -y install jq
+
+#install shc
+apt -y install shc
+
 # install wget and curl
 apt -y install wget curl
-apt -y install python
 
-# install python
-cd
-apt -y install ruby
+#figlet
+apt-get install figlet -y
+apt-get install ruby -y
 gem install lolcat
-apt -y install figlet
 
 # set time GMT +7
 ln -fs /usr/share/zoneinfo/Asia/Jakarta /etc/localtime
 
+# set locale
+sed -i 's/AcceptEnv/#AcceptEnv/g' /etc/ssh/sshd_config
 
 # install
 # // install
@@ -201,7 +207,7 @@ sed -i $MYIP2 /etc/squid/squid.conf
 apt -y install vnstat
 /etc/init.d/vnstat restart
 apt -y install libsqlite3-dev
-wget https://raw.githubusercontent.com/Rhyuu11/newsc/main/vnstat-2.6.tar.gz
+wget https://raw.githubusercontent.com/Rhyuu11/opok/main/vnstat-2.6.tar.gz
 tar zxvf vnstat-2.6.tar.gz
 cd vnstat-2.6
 ./configure --prefix=/usr --sysconfdir=/etc && make && make install
@@ -214,24 +220,26 @@ systemctl enable vnstat
 rm -f /root/vnstat-2.6.tar.gz
 rm -rf /root/vnstat-2.6
 
-# install stunnel
-apt install stunnel4 -y
-#certi stunnel
-#wget -O /etc/stunnel/hidessh.pem https://gitlab.com/hidessh/baru/-/raw/main/certi/stunel && chmod +x /etc/stunnel/hidessh.pem
-#installer SSL Cloudflare 
-cd
+# Install Stunnel5
+cd /root/
+wget -q "https://raw.githubusercontent.com/Rhyuu11/opok/main/stunnel5.zip"
+unzip stunnel5.zip
+cd /root/stunnel
+chmod +x configure
+./configure
+make
+make install
+cd /root
+rm -r -f stunnel
+rm -f stunnel5.zip
+rm -fr /etc/stunnel5
+mkdir -p /etc/stunnel5
+chmod 644 /etc/stunnel5
 
-wget https://raw.githubusercontent.com/hidessh99/projectku/main/SSL/hidesvr.crt
-wget https://raw.githubusercontent.com/hidessh99/projectku/main/SSL/hidesvr.key
-#buat directory
-mkdir /etc/hidessh
-chmod +x /etc/hidessh
-
-cat hidesvr.key hidesvr.crt >> /etc/hidessh/stunnel.pem
-
-#konfigurasi stunnel4
-cat > /etc/stunnel/stunnel.conf <<-END
-cert = /etc/hidessh/stunnel.pem
+# Download Config Stunnel5
+cat > /etc/stunnel5/stunnel5.conf <<-END
+cert = /etc/xray/xray.crt
+key = /etc/xray/xray.key
 client = no
 socket = a:SO_REUSEADDR=1
 socket = l:TCP_NODELAY=1
@@ -248,14 +256,59 @@ connect = 127.0.0.1:109
 END
 
 # make a certificate
-openssl genrsa -out key.pem 2048
-openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
--subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"
-cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
+#openssl genrsa -out key.pem 2048  >/dev/null 2>&1
+#openssl req -new -x509 -key key.pem -out cert.pem -days 1095 \
+#-subj "/C=$country/ST=$state/L=$locality/O=$organization/OU=$organizationalunit/CN=$commonname/emailAddress=$email"  >/dev/null 2>&1
+#cat key.pem cert.pem >> /etc/stunnel/stunnel.pem
 
 # konfigurasi stunnel
-sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
-/etc/init.d/stunnel4 restart
+#echo "ENABLED=1" >> /etc/default/stunnel4
+#sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
+#systemctl daemon-reload >/dev/null 2>&1
+#/etc/init.d/stunnel4 start >/dev/null 2>&1
+#/etc/init.d/stunnel4 restart >/dev/null 2>&1
+
+# Service Stunnel5 systemctl restart stunnel5
+rm -fr /etc/systemd/system/stunnel5.service
+cat > /etc/systemd/system/stunnel5.service << END
+[Unit]
+Description=Stunnel5 Service
+Documentation=https://stunnel.org
+Documentation=https://nekopoi.care
+After=syslog.target network-online.target
+
+[Service]
+ExecStart=/usr/local/bin/stunnel5 /etc/stunnel5/stunnel5.conf
+Type=forking
+
+[Install]
+WantedBy=multi-user.target
+END
+
+# Service Stunnel5 /etc/init.d/stunnel5
+rm -fr /etc/init.d/stunnel5
+wget -q -O /etc/init.d/stunnel5 "https://raw.githubusercontent.com/Rhyuu11/newsc/main/stunnel5.init"
+
+# Ubah Izin Akses
+#chmod 600 /etc/stunnel5/stunnel5.pem
+chmod +x /etc/init.d/stunnel5
+cp -r /usr/local/bin/stunnel /usr/local/bin/stunnel5
+#mv /usr/local/bin/stunnel /usr/local/bin/stunnel5
+
+# Remove File
+rm -r -f /usr/local/share/doc/stunnel/
+rm -r -f /usr/local/etc/stunnel/
+rm -f /usr/local/bin/stunnel
+rm -f /usr/local/bin/stunnel3
+rm -f /usr/local/bin/stunnel4
+#rm -f /usr/local/bin/stunnel5
+
+# Restart Stunnel5
+systemctl daemon-reload >/dev/null 2>&1
+systemctl enable stunnel5 >/dev/null 2>&1
+systemctl start stunnel5 >/dev/null 2>&1
+systemctl restart stunnel5 >/dev/null 2>&1
+
 
 #OpenVPN
 wget https://raw.githubusercontent.com/Rhyuu11/opok/main/install/vpn.sh &&  chmod +x vpn.sh && ./vpn.sh
@@ -328,8 +381,6 @@ iptables-save > /etc/iptables.up.rules
 iptables-restore -t < /etc/iptables.up.rules
 netfilter-persistent save
 netfilter-persistent reload
-
-
 
 
 # download script
