@@ -51,7 +51,9 @@ setup_dnstt() {
 	chmod +x dnstt-server >/dev/null 2>&1
 	wget -O dnstt-client "https://raw.githubusercontent.com/Rhyuu11/opok/main/slowdns/dnstt-client" >/dev/null 2>&1
 	chmod +x dnstt-client >/dev/null 2>&1
-	./dnstt-server -gen-key -privkey-file server.key -pubkey-file server.pub
+	./dnstt-server -gen-key \
+    -privkey-file /etc/slowdns/server.key \
+    -pubkey-file /etc/slowdns/server.pub
 	chmod +x *
 	mv * /etc/slowdns
 	wget -O /etc/systemd/system/client.service "https://raw.githubusercontent.com/Rhyuu11/opok/main/slowdns/client" >/dev/null 2>&1
